@@ -1,0 +1,17 @@
+--- src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/assignmentwithmethods/InputAssignmentWithMethods.java
++++ src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/assignmentwithmethods/OutputAssignmentWithMethods.java
+@@ -12,13 +12,11 @@
+ 
+ package org.checkstyle.autofix.recipe.unusedlocalvariable.assignmentwithmethods;
+ 
+-public class InputAssignmentWithMethods {
++public class OutputAssignmentWithMethods {
+ 
+     public void assignment() {
+         int a = 1;
+-        int b = 2; // violation 'Unused named local variable'
+         a = 3;
+-        b = 4;
+         System.out.println(a);
+     }
+ 

@@ -1,0 +1,27 @@
+--- src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/recipeenhancements/InputRecipeEnhancements.java
++++ src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/recipeenhancements/OutputRecipeEnhancements.java
+@@ -15,13 +15,11 @@
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+-public class InputRecipeEnhancements {
++public class OutputRecipeEnhancements {
+ 
+     public void redundantAssignment() {
+         int a = 1;
+-        int b = 2; // violation 'Unused named local variable'
+         a = 3;
+-        b = 4;
+         System.out.println(a);
+     }
+ 
+@@ -32,9 +30,7 @@
+     }
+ 
+     public void nestedBlockAndTypeCast(boolean flag) {
+-        Object obj = "test"; // violation 'Unused named local variable'
+         if (flag) {
+-            obj = (String) getString();
+         }
+         System.out.println(flag);
+     }

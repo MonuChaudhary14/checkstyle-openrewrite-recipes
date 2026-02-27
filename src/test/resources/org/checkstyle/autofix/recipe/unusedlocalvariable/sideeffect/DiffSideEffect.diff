@@ -1,0 +1,11 @@
+--- src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/sideeffect/InputSideEffect.java
++++ src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/sideeffect/OutputSideEffect.java
+@@ -14,7 +14,7 @@
+ import java.util.concurrent.atomic.AtomicInteger;
+ import java.util.function.Consumer;
+ 
+-public class InputSideEffect {
++public class OutputSideEffect {
+ 
+     public void method() {
+         final AtomicInteger reportedSize = new AtomicInteger(200);

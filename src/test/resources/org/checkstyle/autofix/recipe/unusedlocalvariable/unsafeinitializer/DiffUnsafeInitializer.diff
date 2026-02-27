@@ -1,0 +1,11 @@
+--- src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/unsafeinitializer/InputUnsafeInitializer.java
++++ src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/unsafeinitializer/OutputUnsafeInitializer.java
+@@ -11,7 +11,7 @@
+ 
+ package org.checkstyle.autofix.recipe.unusedlocalvariable.unsafeinitializer;
+ 
+-public class InputUnsafeInitializer {
++public class OutputUnsafeInitializer {
+ 
+     public void method() {
+         int unused = sideEffect(); // (suppressed violation)

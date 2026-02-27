@@ -1,0 +1,49 @@
+--- src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/killmutations/InputKillMutations.java
++++ src/test/resources/org/checkstyle/autofix/recipe/unusedlocalvariable/killmutations/OutputKillMutations.java
+@@ -11,26 +11,15 @@
+ 
+ package org.checkstyle.autofix.recipe.unusedlocalvariable.killmutations;
+ 
+-public class InputKillMutations {
++public class OutputKillMutations {
+ 
+     public void unaryTest() {
+-        int unused = 0; // violation 'Unused named local variable'
+-        unused++;
+-        ++unused;
+-        unused--;
+-        --unused;
+-
+         int dummy = 10;
+         int keep1 = dummy++; // (suppressed violation)
+         int keep2 = ++dummy; // (suppressed violation)
+         int keep3 = dummy--; // (suppressed violation)
+         int keep4 = --dummy; // (suppressed violation)
+ 
+-        int unaryPlus = +1; // violation 'Unused named local variable'
+-        int unaryMinus = -1; // violation 'Unused named local variable'
+-        int unaryNot = ~1; // violation 'Unused named local variable'
+-        boolean unaryLogicalNot = !true; // violation 'Unused named local variable'
+-
+         System.out.println(dummy);
+     }
+ 
+@@ -46,18 +35,14 @@
+     }
+ 
+     public void noInitTest() {
+-        int noInit; // violation 'Unused named local variable'
+     }
+ 
+     public void mixedBlockTest() {
+-        int a = 1; // violation 'Unused named local variable'
+         System.out.println("Hello");
+-        a = 2;
+ 
+         Runnable r = new Runnable() {
+             @Override
+             public void run() {
+-                int innerUnused = 5; // violation 'Unused named local variable'
+             }
+         };
+         r.run();
