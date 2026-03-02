@@ -17,14 +17,16 @@
 
 package org.checkstyle.autofix;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.checkstyle.autofix.marker.ViolationMarkerRecipe;
 import org.checkstyle.autofix.parser.CheckConfiguration;
 import org.checkstyle.autofix.parser.CheckstyleViolation;
 import org.checkstyle.autofix.recipe.FinalClass;
@@ -46,8 +48,11 @@ public final class CheckstyleRecipeRegistry {
             CheckConfiguration, Recipe>> RECIPE_MAP_WITH_CONFIG =
             new EnumMap<>(CheckFullName.class);
 
+    private static final EnumMap<CheckFullName, Supplier<Recipe>>
+            RECIPE_MAP_NO_VIOLATIONS = new EnumMap<>(CheckFullName.class);
+
     static {
-        RECIPE_MAP.put(CheckFullName.FINAL_CLASS, FinalClass::new);
+        RECIPE_MAP_NO_VIOLATIONS.put(CheckFullName.FINAL_CLASS, FinalClass::new);
         RECIPE_MAP.put(CheckFullName.UPPER_ELL, UpperEll::new);
         RECIPE_MAP.put(CheckFullName.HEX_LITERAL_CASE, HexLiteralCase::new);
         RECIPE_MAP.put(CheckFullName.FINAL_LOCAL_VARIABLE, FinalLocalVariable::new);
@@ -73,35 +78,41 @@ public final class CheckstyleRecipeRegistry {
      */
     public static List<Recipe> getRecipes(List<CheckstyleViolation> violations,
                                           Map<CheckstyleCheck, CheckConfiguration> config) {
-        return violations.stream()
-                .collect(Collectors.groupingBy(CheckstyleViolation::getSource))
-                .entrySet()
-                .stream()
-                .map(entry -> {
-                    return createRecipe(entry.getValue(), config.get(entry.getKey()));
-                })
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+        final List<Recipe> recipes = new ArrayList<>();
+
+        recipes.add(new ViolationMarkerRecipe(violations));
+
+        final Map<CheckstyleCheck, List<CheckstyleViolation>> groupedViolations =
+                violations.stream()
+                        .collect(Collectors.groupingBy(CheckstyleViolation::getSource));
+
+        for (Map.Entry<CheckstyleCheck, List<CheckstyleViolation>> entry
+                : groupedViolations.entrySet()) {
+            final CheckstyleCheck check = entry.getKey();
+
+            java.util.Optional.ofNullable(config.get(check))
+                    .ifPresent(checkConfig -> addRecipe(recipes, checkConfig, entry.getValue()));
+        }
+
+        return recipes;
     }
 
-    private static Recipe createRecipe(List<CheckstyleViolation> violations,
-                                       CheckConfiguration checkConfig) {
-        Recipe result = null;
-        if (checkConfig != null) {
+    private static void addRecipe(List<Recipe> recipes, CheckConfiguration checkConfig,
+                                  List<CheckstyleViolation> violations) {
+        final CheckFullName checkName = checkConfig.getCheckName();
 
-            final CheckFullName checkName = checkConfig.getCheckName();
+        java.util.Optional.ofNullable(RECIPE_MAP_NO_VIOLATIONS.get(checkName))
+                .ifPresent(factory -> recipes.add(factory.get()));
 
-            final BiFunction<List<CheckstyleViolation>, CheckConfiguration,
-                    Recipe> configRecipeFactory = RECIPE_MAP_WITH_CONFIG.get(checkName);
+        java.util.Optional.ofNullable(RECIPE_MAP_WITH_CONFIG.get(checkName))
+                .ifPresent(factory -> {
+                    recipes.add(factory.apply(violations, checkConfig));
+                });
 
-            if (configRecipeFactory != null) {
-                result = configRecipeFactory.apply(violations, checkConfig);
-            }
-            else {
-                result = RECIPE_MAP.get(checkName).apply(violations);
-            }
-        }
-        return result;
+        java.util.Optional.ofNullable(RECIPE_MAP.get(checkName))
+                .ifPresent(factory -> {
+                    recipes.add(factory.apply(violations));
+                });
     }
 
 }

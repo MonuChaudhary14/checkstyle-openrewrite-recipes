@@ -146,24 +146,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>CheckstyleRecipeRegistry.java</sourceFile>
-    <mutatedClass>org.checkstyle.autofix.CheckstyleRecipeRegistry</mutatedClass>
-    <mutatedMethod>createRecipe</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (checkConfig != null) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleRecipeRegistry.java</sourceFile>
-    <mutatedClass>org.checkstyle.autofix.CheckstyleRecipeRegistry</mutatedClass>
-    <mutatedMethod>getRecipes</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/stream/Stream::filter with receiver</description>
-    <lineContent>.filter(Objects::nonNull)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>ConfigurationLoader.java</sourceFile>
     <mutatedClass>org.checkstyle.autofix.parser.ConfigurationLoader</mutatedClass>
     <mutatedMethod>lambda$mapConfiguration$1</mutatedMethod>
