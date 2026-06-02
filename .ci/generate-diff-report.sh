@@ -100,6 +100,7 @@ if [ "$COMPILE_FAILED" = "1" ]; then
 fi
 
 echo "Generating diff report..."
+git checkout config/rewrite.yml || true
 git diff > "$WORK_DIR/recipe-diff.patch"
 
 if [ -s "$WORK_DIR/recipe-diff.patch" ]; then
