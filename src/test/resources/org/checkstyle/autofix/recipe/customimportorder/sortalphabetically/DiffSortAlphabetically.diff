@@ -1,0 +1,17 @@
+--- src/test/resources/org/checkstyle/autofix/recipe/customimportorder/sortalphabetically/InputSortAlphabetically.java
++++ src/test/resources/org/checkstyle/autofix/recipe/customimportorder/sortalphabetically/OutputSortAlphabetically.java
+@@ -8,11 +8,9 @@
+ 
+ package org.checkstyle.autofix.recipe.customimportorder.sortalphabetically;
+ 
+-import java.util.Set;
+-// violation below 'Wrong lexicographical order for 'java.util.Map' import. Should be before 'java.util.Set'.'
+-import java.util.Map;
+-// violation below 'Wrong lexicographical order for 'java.util.List' import. Should be before 'java.util.Set'.'
+ import java.util.List;
++import java.util.Map;
++import java.util.Set;
+ 
+-public class InputSortAlphabetically {
++public class OutputSortAlphabetically {
+ }

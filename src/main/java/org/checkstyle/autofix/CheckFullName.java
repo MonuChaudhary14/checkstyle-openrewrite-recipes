@@ -40,7 +40,8 @@ public enum CheckFullName {
     MISSING_OVERRIDE("com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck"),
     CONSTRUCTORS_DECLARATION_GROUPING(
         "com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck"),
-    UNUSED_IMPORT("com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck");
+    UNUSED_IMPORT("com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"),
+    CUSTOM_IMPORT_ORDER("com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck");
 
     private final String id;
 

@@ -30,6 +30,7 @@ import org.checkstyle.autofix.parser.CheckstyleViolation;
 import org.checkstyle.autofix.recipe.AnnotationOnSameLine;
 import org.checkstyle.autofix.recipe.AvoidStarImport;
 import org.checkstyle.autofix.recipe.ConstructorsDeclarationGrouping;
+import org.checkstyle.autofix.recipe.CustomImportOrder;
 import org.checkstyle.autofix.recipe.EmptyStatement;
 import org.checkstyle.autofix.recipe.FinalClass;
 import org.checkstyle.autofix.recipe.FinalLocalVariable;
@@ -65,6 +66,7 @@ public final class CheckstyleRecipeRegistry {
         RECIPE_MAP.put(CheckFullName.FINAL_LOCAL_VARIABLE, FinalLocalVariable::new);
         RECIPE_MAP_WITH_CONFIG.put(CheckFullName.HEADER, Header::new);
         RECIPE_MAP_WITH_CONFIG.put(CheckFullName.NEWLINE_AT_END_OF_FILE, NewlineAtEndOfFile::new);
+        RECIPE_MAP_WITH_CONFIG.put(CheckFullName.CUSTOM_IMPORT_ORDER, CustomImportOrder::new);
         RECIPE_MAP.put(CheckFullName.NUMERICAL_PREFIXES_INF_SUF_CASE,
             NumericalPrefixesInfixesSuffixesCharacterCase::new);
         RECIPE_MAP.put(CheckFullName.REDUNDANT_IMPORT, RedundantImport::new);
