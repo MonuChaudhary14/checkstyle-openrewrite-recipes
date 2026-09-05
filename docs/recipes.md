@@ -15,6 +15,9 @@ This page lists the currently available OpenRewrite recipes designed to fix Chec
 ### Design
 - [FinalClass](recipes/design/FinalClass.md) - Ensures that classes which only have private constructors are declared as final.
 
+### Header
+- [Header](recipes/header/Header.md) - Adds headers to Java source files when missing.
+
 ### Imports
 - [AvoidStarImport](recipes/imports/AvoidStarImport.md) - Expands star imports into individual ones to avoid star imports.
 
