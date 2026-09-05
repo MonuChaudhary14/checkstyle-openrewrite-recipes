@@ -22,6 +22,9 @@ This page lists the currently available OpenRewrite recipes designed to fix Chec
 ### Imports
 - [AvoidStarImport](recipes/imports/AvoidStarImport.md) - Expands star imports into individual ones to avoid star imports.
 
+### Miscellaneous
+- [HexLiteralCase](recipes/misc/HexLiteralCase.md) - Replaces lowercase hexadecimal letters (`a-f`) with uppercase letters (`A-F`).
+
 ### Whitespace
 - [EmptyForInitializerPad](recipes/whitespace/EmptyForInitializerPad.md) - Fixes padding around empty for-loop initializers.
 - [EmptyForIteratorPad](recipes/whitespace/EmptyForIteratorPad.md) - Fixes padding around empty for-loop iterators.
